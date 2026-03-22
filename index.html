@@ -3,7 +3,13 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Law Office — Attorney at Law</title>
+<meta property="og:title" content="Tangkanangnukul Law" />
+<meta property="og:description" content="Andrew Lee Chen, ESQ. — Intellectual Property, Immigration, and Corporate Law. Deputy Labor Commissioner, State of California." />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Tangkanangnukul Law" />
+<meta name="twitter:description" content="Andrew Lee Chen, ESQ. — Intellectual Property, Immigration, and Corporate Law." />
+<title>Tangkanangnukul Law</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet"/>
 <style>
   :root {
@@ -506,19 +512,59 @@
   @media (max-width: 900px) {
     nav { padding: 1.2rem 2rem; }
     .nav-links { gap: 1.5rem; }
-    .hero { grid-template-columns: 1fr; padding: 7rem 2rem 3rem; gap: 2.5rem; }
-    .hero-photo-wrap { order: -1; }
-    .hero-photo-frame { width: min(320px, 100%); }
-    .photo-badge { left: 0; }
-    #practice { padding: 4rem 2rem; }
+
+    /* Hero stacks vertically, photo on top */
+    .hero {
+      grid-template-columns: 1fr;
+      padding: 6rem 1.5rem 3rem;
+      gap: 2rem;
+    }
+    .hero-photo-wrap { order: -1; display: flex; justify-content: center; }
+    .hero-photo-frame {
+      width: 100%;
+      max-width: 340px;
+      margin: 0 auto;
+    }
+
+    /* Badge sits below photo, not overlapping */
+    .photo-badge {
+      position: static;
+      margin-top: 1rem;
+      display: block;
+      width: 100%;
+      text-align: center;
+      border-left: none;
+      border-top: 2px solid var(--gold);
+    }
+
+    /* Hero text centred on mobile */
+    .hero-text { text-align: center; }
+    .hero-eyebrow { justify-content: center; }
+    .hero-eyebrow::before { display: none; }
+    .hero-title-bar { margin: 1.6rem auto; }
+    .hero-bio { margin: 0 auto 2.4rem; }
+
+    #practice { padding: 3rem 1.5rem; }
     .practice-grid { grid-template-columns: 1fr; }
-    .expand-panel.open { grid-template-columns: 1fr; }
-    .credentials-bar { padding: 2rem; flex-direction: column; }
+    .expand-panel.open { grid-template-columns: 1fr; padding: 2rem 1.5rem; }
+    .credentials-bar { padding: 2rem 1.5rem; flex-direction: column; align-items: center; }
     .cred-divider { display: none; }
-    #contact { grid-template-columns: 1fr; padding: 3rem 2rem; }
-    footer { padding: 2rem; flex-direction: column; text-align: center; }
+    .cred-item { text-align: center; }
+    #contact { grid-template-columns: 1fr; padding: 3rem 1.5rem; }
+    .form-row { grid-template-columns: 1fr; }
+    footer { padding: 2rem 1.5rem; flex-direction: column; text-align: center; }
     .footer-note { text-align: center; }
-    .divider { padding: 0 2rem; }
+    .divider { padding: 0 1.5rem; }
+    .section-header { padding: 0 1rem; }
+  }
+
+  @media (max-width: 480px) {
+    nav { padding: 1rem 1.2rem; }
+    .nav-links { gap: 1rem; }
+    .nav-links a { font-size: 0.65rem; }
+    h1 { font-size: 2.4rem; }
+    .hero-photo-frame { max-width: 280px; }
+    .photo-badge-value { font-size: 1.2rem; }
   }
 </style>
 </head>
