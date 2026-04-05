@@ -3,7 +3,13 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Law Office — Attorney at Law</title>
+<meta property="og:title" content="Tangkanangnukul Law" />
+<meta property="og:description" content="Andrew Lee Chen, ESQ. — Intellectual Property, Immigration, and Corporate Law. Deputy Labor Commissioner, State of California." />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Tangkanangnukul Law" />
+<meta name="twitter:description" content="Andrew Lee Chen, ESQ. — Intellectual Property, Immigration, and Corporate Law." />
+<title>Tangkanangnukul Law</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet"/>
 <style>
   :root {
@@ -506,25 +512,89 @@
   @media (max-width: 900px) {
     nav { padding: 1.2rem 2rem; }
     .nav-links { gap: 1.5rem; }
-    .hero { grid-template-columns: 1fr; padding: 7rem 2rem 3rem; gap: 2.5rem; }
-    .hero-photo-wrap { order: -1; }
-    .hero-photo-frame { width: min(320px, 100%); }
-    .photo-badge { left: 0; }
-    #practice { padding: 4rem 2rem; }
+
+    /* Hero stacks vertically, photo on top */
+    .hero {
+      grid-template-columns: 1fr;
+      padding: 6rem 1.5rem 3rem;
+      gap: 2rem;
+    }
+    .hero-photo-wrap { order: -1; display: flex; justify-content: center; }
+    .hero-photo-frame {
+      width: 100%;
+      max-width: 340px;
+      margin: 0 auto;
+    }
+
+    /* Badge sits below photo, not overlapping */
+    .photo-badge {
+      position: static;
+      margin-top: 1rem;
+      display: block;
+      width: 100%;
+      text-align: center;
+      border-left: none;
+      border-top: 2px solid var(--gold);
+    }
+
+    /* Hero text centred on mobile */
+    .hero-text { text-align: center; }
+    .hero-eyebrow { justify-content: center; }
+    .hero-eyebrow::before { display: none; }
+    .hero-title-bar { margin: 1.6rem auto; }
+    .hero-bio { margin: 0 auto 2.4rem; }
+
+    #practice { padding: 3rem 1.5rem; }
     .practice-grid { grid-template-columns: 1fr; }
-    .expand-panel.open { grid-template-columns: 1fr; }
-    .credentials-bar { padding: 2rem; flex-direction: column; }
+    .expand-panel.open { grid-template-columns: 1fr; padding: 2rem 1.5rem; }
+    .credentials-bar { padding: 2rem 1.5rem; flex-direction: column; align-items: center; }
     .cred-divider { display: none; }
-    #contact { grid-template-columns: 1fr; padding: 3rem 2rem; }
-    footer { padding: 2rem; flex-direction: column; text-align: center; }
+    .cred-item { text-align: center; }
+    #contact { grid-template-columns: 1fr; padding: 3rem 1.5rem; }
+    .form-row { grid-template-columns: 1fr; }
+    footer { padding: 2rem 1.5rem; flex-direction: column; text-align: center; }
     .footer-note { text-align: center; }
-    .divider { padding: 0 2rem; }
+    .divider { padding: 0 1.5rem; }
+    .section-header { padding: 0 1rem; }
+  }
+
+  @media (max-width: 480px) {
+    nav { padding: 1rem 1.2rem; }
+    .nav-links { gap: 1rem; }
+    .nav-links a { font-size: 0.65rem; }
+    h1 { font-size: 2.4rem; }
+    .hero-photo-frame { max-width: 280px; }
+    .photo-badge-value { font-size: 1.2rem; }
+  }
+
+  /* ── LANGUAGE TOGGLE ── */
+  .lang-toggle {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 200;
+    background: var(--dark-2);
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    padding: 0.7rem 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 20px rgba(240,192,64,0.15);
+  }
+  .lang-toggle:hover {
+    background: var(--gold);
+    color: var(--dark);
   }
 </style>
 </head>
 <body>
 
 <!-- NAV -->
+
+<button class="lang-toggle" id="langBtn" onclick="toggleLang()">中文</button>
 <nav>
   <div class="nav-logo"></div>
   <div class="nav-links">
@@ -723,16 +793,18 @@
     </p>
   </div>
 
-  <div class="contact-form fade-up">
+  <form class="contact-form fade-up" action="https://formspree.io/f/mqegwzpk" method="POST">
     <div class="form-row">
-      <input type="text" placeholder="First Name" />
-      <input type="text" placeholder="Last Name" />
+      <input type="text" name="first_name" placeholder="First Name" />
+      <input type="text" name="last_name" placeholder="Last Name" />
     </div>
-    <input type="email" placeholder="Email Address" />
-    <input type="tel" placeholder="Phone Number" />
-    <textarea placeholder="Brief description of your legal matter…"></textarea>
-    <button class="submit-btn">Send Inquiry</button>
-  </div>
+    <input type="email" name="email" placeholder="Email Address" required />
+    <input type="tel" name="phone" placeholder="Phone Number" />
+    <textarea name="message" placeholder="Brief description of your legal matter…"></textarea>
+    <input type="hidden" name="_replyto" value="andrew@andrewchenesq.com">
+    <input type="hidden" name="_subject" value="New Consultation Request — Tangkanangnukul Law">
+    <button type="submit" class="submit-btn">Send Inquiry</button>
+  </form>
 </section>
 
 <!-- FOOTER -->
@@ -784,6 +856,173 @@
     document.getElementById('card-' + key).classList.remove('active');
     current = null;
   }
+</script>
+
+<script>
+const translations = {
+  en: {
+    navAbout: 'About',
+    navPractice: 'Practice Areas',
+    navContact: 'Contact',
+    eyebrow: 'Attorney at Law',
+    h1: 'Principled.<br><em>Precise.</em><br>Persuasive.',
+    credentials: 'University of Chicago · A.B. Neurobiology<br>University of San Francisco School of Law · J.D.<br>IP &amp; Technology Law Certificate with Honors',
+    bio: 'A multidisciplinary attorney bridging science, technology, and the law. Currently serving as Deputy Labor Commissioner for the State of California, with extensive experience in mediation and arbitration of labor law disputes. Committed to delivering rigorous, client-centered representation across intellectual property, immigration, and corporate law.',
+    cta: 'Explore Practice Areas',
+    credLabel1: 'Education', credVal1: 'University of Chicago',
+    credLabel2: 'Law School', credVal2: 'USF School of Law',
+    credLabel3: 'Distinction', credVal3: 'IP &amp; Technology Certificate, Honors',
+    credLabel4: 'State Service', credVal4: 'Deputy Labor Commissioner',
+    credLabel5: 'Specialization', credVal5: 'Mediation, Arbitration &amp; Transactions',
+    credLabel6: 'Admissions', credVal6: 'State Bar of California',
+    practiceEyebrow: 'Areas of Expertise',
+    practiceTitle: 'Practice <em>Areas</em>',
+    card1num: '01', card1title: 'Intellectual Property', card1teaser: 'Patents, trademarks, copyrights, and trade secrets — protecting the innovations that define your competitive edge.',
+    card2num: '02', card2title: 'Immigration Law', card2teaser: 'Comprehensive immigration counsel for individuals, families, and businesses navigating complex U.S. visa and status matters.',
+    card3num: '03', card3title: 'Corporate Law', card3teaser: 'Entity formation, governance, contracts, and transactions — counsel that aligns legal structure with business strategy.',
+    ip_eyebrow: 'Practice Area 01', ip_title: 'Intellectual<br>Property Law',
+    ip_body: 'With a Bachelor of Arts in Neurobiology from the University of Chicago and an IP &amp; Technology Law Certificate earned with Honors from USF, this practice combines deep scientific literacy with rigorous legal training. Clients in life sciences, technology, and creative industries receive counsel that genuinely understands the underlying innovations at stake.',
+    ip_list: ['Patent prosecution, strategy, and portfolio management for technology and life science clients','Trademark registration, clearance searches, and brand protection enforcement','Copyright counseling for software, creative works, and digital content','Trade secret identification, protection strategies, and misappropriation disputes','IP licensing agreements and technology transfer negotiations','Cease-and-desist correspondence and IP litigation support','Technology law counseling including data privacy, SaaS agreements, and platform terms'],
+    imm_eyebrow: 'Practice Area 02', imm_title: 'Immigration<br>Law',
+    imm_body: 'Navigating the U.S. immigration system demands both precision and compassion. From skilled worker visas that support business growth to family reunification and removal defense, this practice provides clear-eyed guidance through every stage of the immigration journey — before USCIS, the immigration courts, and beyond.',
+    imm_list: ['Employment-based visas: H-1B, L-1, O-1, TN, and EB preference categories','Family-based petitions and adjustment of status','Naturalization and citizenship applications','DACA renewals and special immigrant juvenile status','Consular processing and visa interview preparation','Removal defense and immigration court representation','Corporate immigration compliance and I-9 audits'],
+    corp_eyebrow: 'Practice Area 03', corp_title: 'Corporate<br>Law',
+    corp_body: 'Sound legal infrastructure is the foundation of every successful enterprise. From startup formation to complex commercial transactions, this practice delivers practical, business-minded counsel that helps clients build, protect, and grow their organizations with confidence — complemented by mediation and dispute resolution experience gained as a Deputy Labor Commissioner.',
+    corp_list: ['Entity formation: LLCs, corporations, partnerships, and professional entities','Corporate governance, bylaws, operating agreements, and board resolutions','Contract drafting, review, and negotiation for commercial transactions','Mergers, acquisitions, and business sales — due diligence through closing','Employment agreements, equity compensation, and HR compliance','Commercial dispute resolution, mediation, and arbitration','Startup counsel: term sheets, founder agreements, and early-stage financing'],
+    contactEyebrow: 'Get in Touch',
+    contactTitle: 'Schedule a <em>Consultation</em>',
+    contactBody: 'Every matter is unique. A preliminary consultation is an opportunity to understand your situation, discuss your goals, and determine how best to serve your legal needs. Reach out to begin the conversation.',
+    firstName: 'First Name', lastName: 'Last Name', email: 'Email Address', phone: 'Phone Number', message: 'Brief description of your legal matter…', submit: 'Send Inquiry',
+    footerNote: '© 2026 · This website is for informational purposes only and does not constitute legal advice.<br>Contacting this firm does not create an attorney-client relationship.',
+    langBtn: '中文', badgeLabel: 'Current Role', badgeValue: 'Deputy Labor Commissioner',
+    sectionSymbol: '§'
+  },
+  zh: {
+    navAbout: '关于',
+    navPractice: '业务领域',
+    navContact: '联系我们',
+    eyebrow: '执业律师',
+    h1: '原则。<br><em>精准。</em><br>说服力。',
+    credentials: '芝加哥大学 · 神经生物学学士<br>旧金山大学法学院 · 法律博士<br>知识产权与技术法优等证书',
+    bio: '跨学科律师，融合科学、技术与法律专业知识。现任加利福尼亚州副劳工专员，在劳动法纠纷的调解与仲裁方面拥有丰富经验。致力于在知识产权、移民法和企业法领域提供严谨、以客户为中心的法律服务。',
+    cta: '探索业务领域',
+    credLabel1: '教育背景', credVal1: '芝加哥大学',
+    credLabel2: '法学院', credVal2: '旧金山大学法学院',
+    credLabel3: '荣誉', credVal3: '知识产权与技术法优等证书',
+    credLabel4: '政府职务', credVal4: '副劳工专员',
+    credLabel5: '专长', credVal5: '调解、仲裁与交易',
+    credLabel6: '执照', credVal6: '加利福尼亚州律师协会',
+    practiceEyebrow: '专业领域',
+    practiceTitle: '业务 <em>领域</em>',
+    card1num: '01', card1title: '知识产权', card1teaser: '专利、商标、版权及商业秘密——保护定义您竞争优势的创新成果。',
+    card2num: '02', card2title: '移民法', card2teaser: '为个人、家庭和企业提供全面的移民法律咨询，助力应对复杂的美国签证及身份事务。',
+    card3num: '03', card3title: '企业法', card3teaser: '实体设立、公司治理、合同及交易——将法律架构与商业战略相结合的专业顾问。',
+    ip_eyebrow: '业务领域 01', ip_title: '知识产权<br>法律',
+    ip_body: '凭借芝加哥大学神经生物学学士学位及旧金山大学知识产权与技术法优等证书，本律所将深厚的科学素养与严谨的法律培训相结合。为生命科学、技术和创意产业的客户提供真正理解底层创新的法律咨询。',
+    ip_list: ['技术和生命科学客户的专利申请、策略及专利组合管理','商标注册、查询及品牌保护执行','软件、创意作品及数字内容的版权咨询','商业秘密识别、保护策略及侵权纠纷','知识产权许可协议及技术转让谈判','停止侵权函及知识产权诉讼支持','技术法律咨询，包括数据隐私、SaaS协议及平台条款'],
+    imm_eyebrow: '业务领域 02', imm_title: '移民<br>法律',
+    imm_body: '应对美国移民体系需要精准与同理心并重。从支持企业发展的技术工人签证到家庭团聚和驱逐出境辩护，本律所在移民旅程的每个阶段提供清晰的法律指导——包括在美国移民局、移民法院及其他机构的代理。',
+    imm_list: ['就业类签证：H-1B、L-1、O-1、TN及EB优先类别','基于家庭的申请及身份调整','入籍及公民身份申请','DACA续签及特殊移民少年身份','领事馆程序及签证面试准备','驱逐出境辩护及移民法院代理','企业移民合规及I-9审计'],
+    corp_eyebrow: '业务领域 03', corp_title: '企业<br>法律',
+    corp_body: '健全的法律基础设施是每个成功企业的基石。从初创企业设立到复杂的商业交易，本律所提供务实、以商业为导向的法律咨询，帮助客户自信地建立、保护和发展其组织——并结合作为副劳工专员所积累的调解和纠纷解决经验。',
+    corp_list: ['实体设立：有限责任公司、股份公司、合伙企业及专业实体','公司治理、章程、经营协议及董事会决议','商业交易的合同起草、审查及谈判','并购及企业出售——从尽职调查到交割','雇佣协议、股权激励及人力资源合规','商业纠纷解决、调解及仲裁','初创企业咨询：条款清单、创始人协议及早期融资'],
+    contactEyebrow: '联系我们',
+    contactTitle: '预约 <em>咨询</em>',
+    contactBody: '每个案件都是独特的。初步咨询是了解您的情况、讨论您的目标并确定如何最好地满足您法律需求的机会。欢迎与我们联系，开始对话。',
+    firstName: '名', lastName: '姓', email: '电子邮件', phone: '电话号码', message: '简要描述您的法律事务…', submit: '发送咨询',
+    footerNote: '© 2026 · 本网站仅供参考，不构成法律意见。<br>联系本律所不产生律师-委托人关系。',
+    langBtn: 'English', badgeLabel: '现任职务', badgeValue: '副劳工专员',
+    sectionSymbol: '§'
+  }
+};
+
+let currentLang = 'en';
+
+function toggleLang() {
+  currentLang = currentLang === 'en' ? 'zh' : 'en';
+  applyTranslations(currentLang);
+}
+
+function applyTranslations(lang) {
+  const t = translations[lang];
+
+  // Nav
+  const navLinks = document.querySelectorAll('.nav-links a');
+  if (navLinks[0]) navLinks[0].textContent = t.navAbout;
+  if (navLinks[1]) navLinks[1].textContent = t.navPractice;
+  if (navLinks[2]) navLinks[2].textContent = t.navContact;
+
+  // Lang button
+  document.getElementById('langBtn').textContent = t.langBtn;
+
+  // Hero
+  document.querySelector('.hero-eyebrow').lastChild.textContent = ' ' + t.eyebrow;
+  document.querySelector('h1').innerHTML = t.h1;
+  document.querySelector('.hero-credentials').innerHTML = t.credentials;
+  document.querySelector('.hero-bio').textContent = t.bio;
+  document.querySelector('.cta-btn span').textContent = t.cta;
+
+  // Badge
+  document.querySelector('.photo-badge-label').innerHTML = document.querySelector('.photo-badge-label').innerHTML.replace(/ANDREW LEE CHEN.*/, 'ANDREW LEE CHEN, <span style="font-size:1.5em;font-family:\'Cormorant Garamond\',serif;color:#F0C040;line-height:1;vertical-align:middle;font-weight:700;">ESQ.</span>');
+  document.querySelector('.photo-badge-value').textContent = 'aka Veera Tangkanangnukul';
+
+  // Credentials bar
+  const credLabels = document.querySelectorAll('.cred-label');
+  const credVals = document.querySelectorAll('.cred-value');
+  const labelKeys = ['credLabel1','credLabel2','credLabel3','credLabel4','credLabel5','credLabel6'];
+  const valKeys   = ['credVal1','credVal2','credVal3','credVal4','credVal5','credVal6'];
+  credLabels.forEach((el, i) => { if (labelKeys[i]) el.textContent = t[labelKeys[i]]; });
+  credVals.forEach((el, i)   => { if (valKeys[i])   el.innerHTML  = t[valKeys[i]]; });
+
+  // Practice section header
+  document.querySelector('.section-eyebrow').textContent = t.practiceEyebrow;
+  document.querySelector('.section-title').innerHTML = t.practiceTitle;
+
+  // Practice cards
+  const cards = document.querySelectorAll('.practice-card');
+  const cardData = [
+    { num: t.card1num, title: t.card1title, teaser: t.card1teaser },
+    { num: t.card2num, title: t.card2title, teaser: t.card2teaser },
+    { num: t.card3num, title: t.card3title, teaser: t.card3teaser },
+  ];
+  cards.forEach((card, i) => {
+    card.querySelector('.card-number').textContent = cardData[i].num;
+    card.querySelector('.card-title').textContent = cardData[i].title;
+    card.querySelector('.card-teaser').textContent = cardData[i].teaser;
+  });
+
+  // Expanded panels
+  const panelData = [
+    { id: 'ip',          eyebrow: t.ip_eyebrow,   title: t.ip_title,   body: t.ip_body,   list: t.ip_list },
+    { id: 'immigration', eyebrow: t.imm_eyebrow,  title: t.imm_title,  body: t.imm_body,  list: t.imm_list },
+    { id: 'corporate',   eyebrow: t.corp_eyebrow, title: t.corp_title, body: t.corp_body, list: t.corp_list },
+  ];
+  panelData.forEach(p => {
+    const panel = document.getElementById('panel-' + p.id);
+    if (!panel) return;
+    panel.querySelector('.expand-eyebrow').textContent = p.eyebrow;
+    panel.querySelector('.expand-title').innerHTML = p.title;
+    panel.querySelector('.expand-body').textContent = p.body;
+    const items = panel.querySelectorAll('.expand-list li');
+    items.forEach((li, i) => { if (p.list[i]) li.lastChild.textContent = p.list[i]; });
+  });
+
+  // Contact
+  const contactEyebrows = document.querySelectorAll('#contact .section-eyebrow');
+  if (contactEyebrows[0]) contactEyebrows[0].textContent = t.contactEyebrow;
+  document.querySelector('.contact-title').innerHTML = t.contactTitle;
+  document.querySelector('.contact-body').textContent = t.contactBody;
+  const inputs = document.querySelectorAll('.contact-form input, .contact-form textarea');
+  const placeholders = [t.firstName, t.lastName, t.email, t.phone, t.message];
+  inputs.forEach((el, i) => { if (placeholders[i]) el.placeholder = placeholders[i]; });
+  document.querySelector('.submit-btn').textContent = t.submit;
+
+  // Footer
+  document.querySelector('.footer-note').innerHTML = t.footerNote;
+
+  // Update html lang attribute
+  document.documentElement.lang = lang;
+}
 </script>
 </body>
 </html>
