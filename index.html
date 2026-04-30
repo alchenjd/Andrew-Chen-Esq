@@ -254,7 +254,7 @@
 
   .practice-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 1.5px;
     background: var(--border);
     border: 1px solid var(--border);
@@ -706,6 +706,14 @@
       <div class="card-teaser">Entity formation, governance, contracts, and transactions — counsel that aligns legal structure with business strategy.</div>
       <div class="card-arrow">→</div>
     </div>
+
+    <div class="practice-card" onclick="togglePanel('property')" id="card-property">
+      <div class="card-number">04</div>
+      <div class="card-icon">🏠</div>
+      <div class="card-title">Property Law</div>
+      <div class="card-teaser">Landlord-tenant disputes, lease agreements, and real estate transactions — protecting your property interests at every stage.</div>
+      <div class="card-arrow">→</div>
+    </div>
   </div>
 
   <!-- EXPANDED PANELS -->
@@ -751,6 +759,28 @@
       </ul>
     </div>
     <button class="close-btn" onclick="closePanel('immigration')">✕ &nbsp; Close</button>
+  </div>
+
+  <div class="expand-panel" id="panel-property">
+    <div>
+      <div class="expand-eyebrow">Practice Area 04</div>
+      <div class="expand-title">Property<br>Law</div>
+      <div class="expand-body">
+        Whether you are a landlord protecting your investment, a tenant asserting your rights, or a party to a real estate transaction, navigating property law requires careful attention to detail and a thorough understanding of California law. This practice provides comprehensive counsel across the full spectrum of property and real estate matters.
+      </div>
+    </div>
+    <div>
+      <ul class="expand-list">
+        <li>Landlord-tenant disputes, unlawful detainer, and eviction proceedings</li>
+        <li>Lease drafting, review, and negotiation for residential and commercial properties</li>
+        <li>Tenant rights defense and habitability claims</li>
+        <li>Real estate purchase and sale agreements</li>
+        <li>Commercial real estate transactions and due diligence</li>
+        <li>Easements, title disputes, and boundary issues</li>
+        <li>HOA disputes and CC&amp;R compliance</li>
+      </ul>
+    </div>
+    <button class="close-btn" onclick="closePanel('property')">✕ &nbsp; Close</button>
   </div>
 
   <div class="expand-panel" id="panel-corporate">
@@ -825,7 +855,7 @@
   fadeEls.forEach(el => obs.observe(el));
 
   // ── Practice panel toggle
-  const panels = { ip: 'panel-ip', immigration: 'panel-immigration', corporate: 'panel-corporate' };
+  const panels = { ip: 'panel-ip', immigration: 'panel-immigration', corporate: 'panel-corporate', property: 'panel-property' };
   let current = null;
 
   function togglePanel(key) {
@@ -880,6 +910,7 @@ const translations = {
     card1num: '01', card1title: 'Intellectual Property', card1teaser: 'Patents, trademarks, copyrights, and trade secrets — protecting the innovations that define your competitive edge.',
     card2num: '02', card2title: 'Immigration Law', card2teaser: 'Comprehensive immigration counsel for individuals, families, and businesses navigating complex U.S. visa and status matters.',
     card3num: '03', card3title: 'Corporate Law', card3teaser: 'Entity formation, governance, contracts, and transactions — counsel that aligns legal structure with business strategy.',
+    card4num: '04', card4title: 'Property Law', card4teaser: 'Landlord-tenant disputes, lease agreements, and real estate transactions — protecting your property interests at every stage.',
     ip_eyebrow: 'Practice Area 01', ip_title: 'Intellectual<br>Property Law',
     ip_body: 'With a Bachelor of Arts in Neurobiology from the University of Chicago and an IP &amp; Technology Law Certificate earned with Honors from USF, this practice combines deep scientific literacy with rigorous legal training. Clients in life sciences, technology, and creative industries receive counsel that genuinely understands the underlying innovations at stake.',
     ip_list: ['Patent prosecution, strategy, and portfolio management for technology and life science clients','Trademark registration, clearance searches, and brand protection enforcement','Copyright counseling for software, creative works, and digital content','Trade secret identification, protection strategies, and misappropriation disputes','IP licensing agreements and technology transfer negotiations','Cease-and-desist correspondence and IP litigation support','Technology law counseling including data privacy, SaaS agreements, and platform terms'],
@@ -887,6 +918,9 @@ const translations = {
     imm_body: 'Navigating the U.S. immigration system demands both precision and compassion. From skilled worker visas that support business growth to family reunification and removal defense, this practice provides clear-eyed guidance through every stage of the immigration journey — before USCIS, the immigration courts, and beyond.',
     imm_list: ['Employment-based visas: H-1B, L-1, O-1, TN, and EB preference categories','Family-based petitions and adjustment of status','Naturalization and citizenship applications','DACA renewals and special immigrant juvenile status','Consular processing and visa interview preparation','Removal defense and immigration court representation','Corporate immigration compliance and I-9 audits'],
     corp_eyebrow: 'Practice Area 03', corp_title: 'Corporate<br>Law',
+    prop_eyebrow: 'Practice Area 04', prop_title: 'Property<br>Law',
+    prop_body: 'Whether you are a landlord protecting your investment, a tenant asserting your rights, or a party to a real estate transaction, navigating property law requires careful attention to detail and a thorough understanding of California law. This practice provides comprehensive counsel across the full spectrum of property and real estate matters.',
+    prop_list: ['Landlord-tenant disputes, unlawful detainer, and eviction proceedings','Lease drafting, review, and negotiation for residential and commercial properties','Tenant rights defense and habitability claims','Real estate purchase and sale agreements','Commercial real estate transactions and due diligence','Easements, title disputes, and boundary issues','HOA disputes and CC&R compliance'],
     corp_body: 'Sound legal infrastructure is the foundation of every successful enterprise. From startup formation to complex commercial transactions, this practice delivers practical, business-minded counsel that helps clients build, protect, and grow their organizations with confidence — complemented by mediation and dispute resolution experience gained as a Deputy Labor Commissioner.',
     corp_list: ['Entity formation: LLCs, corporations, partnerships, and professional entities','Corporate governance, bylaws, operating agreements, and board resolutions','Contract drafting, review, and negotiation for commercial transactions','Mergers, acquisitions, and business sales — due diligence through closing','Employment agreements, equity compensation, and HR compliance','Commercial dispute resolution, mediation, and arbitration','Startup counsel: term sheets, founder agreements, and early-stage financing'],
     contactEyebrow: 'Get in Touch',
@@ -917,6 +951,7 @@ const translations = {
     card1num: '01', card1title: '知识产权', card1teaser: '专利、商标、版权及商业秘密——保护定义您竞争优势的创新成果。',
     card2num: '02', card2title: '移民法', card2teaser: '为个人、家庭和企业提供全面的移民法律咨询，助力应对复杂的美国签证及身份事务。',
     card3num: '03', card3title: '企业法', card3teaser: '实体设立、公司治理、合同及交易——将法律架构与商业战略相结合的专业顾问。',
+    card4num: '04', card4title: '房产法', card4teaser: '房东与租客纠纷、租赁协议及房地产交易——在每个阶段保护您的财产权益。',
     ip_eyebrow: '业务领域 01', ip_title: '知识产权<br>法律',
     ip_body: '凭借芝加哥大学神经生物学学士学位及旧金山大学知识产权与技术法优等证书，本律所将深厚的科学素养与严谨的法律培训相结合。为生命科学、技术和创意产业的客户提供真正理解底层创新的法律咨询。',
     ip_list: ['技术和生命科学客户的专利申请、策略及专利组合管理','商标注册、查询及品牌保护执行','软件、创意作品及数字内容的版权咨询','商业秘密识别、保护策略及侵权纠纷','知识产权许可协议及技术转让谈判','停止侵权函及知识产权诉讼支持','技术法律咨询，包括数据隐私、SaaS协议及平台条款'],
@@ -924,6 +959,9 @@ const translations = {
     imm_body: '应对美国移民体系需要精准与同理心并重。从支持企业发展的技术工人签证到家庭团聚和驱逐出境辩护，本律所在移民旅程的每个阶段提供清晰的法律指导——包括在美国移民局、移民法院及其他机构的代理。',
     imm_list: ['就业类签证：H-1B、L-1、O-1、TN及EB优先类别','基于家庭的申请及身份调整','入籍及公民身份申请','DACA续签及特殊移民少年身份','领事馆程序及签证面试准备','驱逐出境辩护及移民法院代理','企业移民合规及I-9审计'],
     corp_eyebrow: '业务领域 03', corp_title: '企业<br>法律',
+    prop_eyebrow: '业务领域 04', prop_title: '房产<br>法律',
+    prop_body: '无论您是保护投资的房东、维权的租客，还是房地产交易的当事方，处理房产法律事务都需要对加利福尼亚州法律有深入了解。本律所为各类房产及房地产事务提供全面的法律咨询服务。',
+    prop_list: ['房东与租客纠纷、非法占用及驱逐程序','住宅及商业房产的租赁起草、审查及谈判','租客权利辩护及居住条件索赔','房地产买卖协议','商业房地产交易及尽职调查','地役权、产权纠纷及边界问题','业主委员会纠纷及CC&R合规'],
     corp_body: '健全的法律基础设施是每个成功企业的基石。从初创企业设立到复杂的商业交易，本律所提供务实、以商业为导向的法律咨询，帮助客户自信地建立、保护和发展其组织——并结合作为副劳工专员所积累的调解和纠纷解决经验。',
     corp_list: ['实体设立：有限责任公司、股份公司、合伙企业及专业实体','公司治理、章程、经营协议及董事会决议','商业交易的合同起草、审查及谈判','并购及企业出售——从尽职调查到交割','雇佣协议、股权激励及人力资源合规','商业纠纷解决、调解及仲裁','初创企业咨询：条款清单、创始人协议及早期融资'],
     contactEyebrow: '联系我们',
@@ -984,6 +1022,7 @@ function applyTranslations(lang) {
     { num: t.card1num, title: t.card1title, teaser: t.card1teaser },
     { num: t.card2num, title: t.card2title, teaser: t.card2teaser },
     { num: t.card3num, title: t.card3title, teaser: t.card3teaser },
+    { num: t.card4num, title: t.card4title, teaser: t.card4teaser },
   ];
   cards.forEach((card, i) => {
     card.querySelector('.card-number').textContent = cardData[i].num;
@@ -996,6 +1035,7 @@ function applyTranslations(lang) {
     { id: 'ip',          eyebrow: t.ip_eyebrow,   title: t.ip_title,   body: t.ip_body,   list: t.ip_list },
     { id: 'immigration', eyebrow: t.imm_eyebrow,  title: t.imm_title,  body: t.imm_body,  list: t.imm_list },
     { id: 'corporate',   eyebrow: t.corp_eyebrow, title: t.corp_title, body: t.corp_body, list: t.corp_list },
+    { id: 'property',    eyebrow: t.prop_eyebrow, title: t.prop_title, body: t.prop_body, list: t.prop_list },
   ];
   panelData.forEach(p => {
     const panel = document.getElementById('panel-' + p.id);
